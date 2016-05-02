@@ -1,0 +1,52 @@
+.md-padding.bottomSheetdemoBasicUsage(
+  ng-controller='BottomSheetCtrl'
+  ng-cloak=''
+)
+  h2.md-title Usage
+  p.
+    Bottom sheets can be displayed by clicking one of the buttons below.
+    Once shown, it can be dismissed by either swiping down or clicking in the
+    shaded area.
+
+  h2.md-title Actions
+  p.
+    Use one of the following buttons to display a bottom sheet.
+  .bottom-sheet-demo.inset(
+    layout='row'
+    layout-sm='column'
+    layout-align='center'
+  )
+    md-button.md-primary.md-raised(
+      flex=50
+      ng-click='showListBottomSheet($event)'
+    ) Show as List
+    md-button.md-primary.md-raised(
+      flex=50
+      ng-click='showGridBottomSheet($event)'
+    ) Show as Grid
+
+  div(ng-if='alert')
+    br
+    b.md-padding(layout='row' layout-align='center center') {{alert}}
+
+  script(id='bottom-sheet-grid-template.html' type='text/ng-template')
+    md-bottom-sheet.md-grid(layout='column' ng-cloak)
+      div(layout='row' layout-align='center center')
+        h4 With clickOutsideToClose option, drag down or press Esc to close
+      md-list(flex layout='row' layout-align='center center')
+        md-list-item(ng-repeat='item in items')
+          md-button.md-grid-item-content(ng-click='listItemClick($index)')
+            i.material-icons {{item.icon}}
+            .md-grid-text {{item.name}}
+
+  script(id='bottom-sheet-list-template.html' type='text/ng-template')
+    md-bottom-sheet.md-list.md-hasheader(ng-cloak)
+      md-subheader Comment Actions
+      md-list
+        md-list-item(ng-repeat='item in items')
+          md-button.md-list-item-content(
+            ng-click='listItemClick($index)'
+            md-autofocus='$index==2'
+          )
+            i.material-icons {{item.icon}}
+            span.md-inline-list-icon-label {{item.name}}

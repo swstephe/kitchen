@@ -1,0 +1,79 @@
+.buttondemoBasicUsage(ng-controller='ButtonCtrl' ng-cloak='')
+  md-content
+    section(
+      layout='row' layout-sm='column'
+      layout-align='center center' layout-wrap=''
+    )
+      md-button {{title1}}
+      md-button.md-primary(md-no-ink='') Primary (md-noink)
+      md-button.md-primary(ng-disabled='true') Disabled
+      md-button.md-warn {{title4}}
+      .label Flat
+
+    section(
+      layout='row' layout-sm='column'
+      layout-align='center center' layout-wrap=''
+    )
+      md-button.md-raised Button
+      md-button.md-raised.md-primary Primary
+      md-button.md-raised.md-primary(ng-disabled='true') Disabled
+      md-button.md-raised.md-warn Warn
+      .label Raised
+
+    section(
+      layout='row' layout-sm='column'
+      layout-align='center center' layout-wrap=''
+    )
+      md-button.md-fab(aria-label="Eat cake")
+        i.material-icons cake
+      md-button.md-fab.md-primary(aria-label="Use Android")
+        i.material-icons android
+      md-button.md-fab(ng-disabled='true' aria-label="Comment")
+        i.material-icons comment
+      md-button.md-fab.md-primary.md-hue-2(aria-label="Profile")
+        i.material-icons people
+      md-button.md-fab.md-mini(aria-label="Eat cake")
+        i.material-icons cake
+      md-button.md-fab.md-mini.md-primary(aria-label="Use Android")
+        i.material-icons(style={'color':'greenyellow'}) android
+      .label Fab
+
+    section(
+      layout='row' layout-sm='column'
+      layout-align='center center' layout-wrap=''
+    )
+        md-button(ng-href='{{googleUrl}}' target='_blank') Default Link
+        md-button.md-primary(ng-href='{{googleUrl}}' target='_blank')
+          | Primary Link
+        md-button Default Button
+        .label Link vs. Button
+
+    section(
+      layout='row' layout-sm='column'
+      layout-align='center center' layout-wrap=''
+    )
+        md-button.md-primary.md-hue-1 Primary Hue 1
+        md-button.md-warn.md-raised.md-hue-2 Warn Hue 2
+        md-button.md-accent Accent
+        md-button.md-accent.md-raised.md-hue-1 Accent Hue 1
+        .label Themed
+
+    section(
+      layout='row' layout-sm='column'
+      layout-align='center center' layout-wrap=''
+    )
+      md-button.md-icon-button.md-primary(aria-label="Settings")
+        i.material-icons menu
+      md-button.md-icon-button.md-accent(aria-label="Favorite")
+        i.material-icons favorite
+      md-button.md-icon-button(aria-label="More")
+        i.material-icons more_vert
+      md-button.md-icon-button.launch(
+        href='http://google.com'
+        title="Launch Google.com in new window"
+        target='_blank'
+        ng-disabled='true'
+        aria-label="Google.com"
+      )
+        i.material-icons launch
+      .label Icon Button

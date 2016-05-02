@@ -1,0 +1,90 @@
+include vars.jade
+doctype html
+html
+  head
+    meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+    meta(name='keywords' content="AngularJS")
+    meta(name='description' content="Angular Material Kitchen Sink")
+    meta(
+      name='viewport'
+      content='width=device-width,initial-scale=1,maximum-scale=1'
+    )
+    link(rel='stylesheet' href="#{angular_material}/angular-material.css")
+    link(
+      rel='stylesheet'
+      href='https://fonts.googleapis.com/icon?family=Material+Icons'
+    )
+    link(rel='stylesheet' href='site.css')
+    link(rel='stylesheet' href='app/styles/bottomSheet.css')
+    link(rel='stylesheet' href='app/styles/button.css')
+    link(rel='stylesheet' href='app/styles/card.css')
+    link(rel='stylesheet' href='app/styles/datePicker.css')
+    link(rel='stylesheet' href='app/styles/progressCircular.css')
+    link(rel='stylesheet' href='app/styles/progressLinear.css')
+    link(rel='stylesheet' href='app/styles/whiteframe.css')
+  body(ng-app='app' layout='row' ng-controller='IndexCtrl' ng-cloak)
+    md-sidenav.site-sidenav.md-sidenav-left.md-whiteframe-z2(
+      md-component-id='left'
+      style={'background-color': '#4DD0E1'}
+      md-is-locked-open="$mdMedia('gt-sm')"
+    )
+      md-toolbar.md-whiteframe-z1(layout='row')
+        .md-toolbar-tools
+          md-button.md-icon-button(hide-gt-md aria-label="Show Menu")
+            ng-md-icon(
+              icon='{{menuIcon}}'
+              style={'fill':'white','vertical-align':'middle'}
+              ng-click='menuToggle()'
+              hide-gt-sm
+            )
+          h2(style={'color':'white'}) ANGULAR MATERIAL
+
+      md-list
+        md-list-item(ng-click="go('home','home');menuToggle();")
+          i.material-icons(style={'color':'white'}) home
+          p(style={'font-size':'18px','color':'white'}) HOME
+        md-divider
+        md-list-item(
+          ng-repeat='item in menuItems'
+          ng-click='go(item.path,item.name);menuToggle();'
+        )
+          p(style={'font-size':'18px','color':'white'}) {{item.name|uppercase}}
+
+    div(layout='column' layout-fill)
+      header(style={'color':'white'})
+        md-toolbar.md-whiteframe-z1.md-primary.md-hue-2(layout='row')
+          .md-toolbar-tools
+            md-button.md-icon-button(hide-gt-md aria-label="Show Menu")
+              ng-md-icon(
+                icon='{{menuIcon}}'
+                style={'fill':'white'}
+                ng-click='menuToggle()'
+              )
+            h1(flex layout-align='center center' style={'color':'white'})
+              span {{title | uppercase}}
+            a(href='https://github.com/mattspaulding/angular-material-kitchen-sink')
+              ng-md-icon(
+                icon='github-circle'
+                size='48'
+                style={'fill':'white','vertical-align':'middle'}
+              )
+      main.md-padding(layout='row' flex)
+        md-content#content(flex)
+          .fade-view(ui-view='')
+    for lib in libs
+      script(type='text/javascript' src=lib)
+    script(type='text/javascript' src='app/app.module.js')
+    script(type='text/javascript' src='app/app.config.js')
+    script(type='text/javascript' src='app/controllers/indexCtrl.js')
+    script(type='text/javascript' src='app/controllers/homeCtrl.js')
+    script(type='text/javascript' src='app/controllers/sideNavLeftCtrl.js')
+    script(type='text/javascript' src='app/controllers/autocompleteCtrl.js')
+    script(type='text/javascript' src='app/controllers/bottomSheetCtrl.js')
+    script(type='text/javascript' src='app/controllers/buttonCtrl.js')
+    script(type='text/javascript' src='app/controllers/cardCtrl.js')
+    script(type='text/javascript' src='app/controllers/datePickerCtrl.js')
+    script(type='text/javascript' src='app/controllers/gridListCtrl.js')
+    script(type='text/javascript' src='app/controllers/inputCtrl.js')
+    script(type='text/javascript' src='app/controllers/progressCircularCtrl.js')
+    script(type='text/javascript' src='app/controllers/progressLinearCtrl.js')
+    script(type='text/javascript' src='app/controllers/toastCtrl.js')

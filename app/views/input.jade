@@ -1,0 +1,54 @@
+.inputdemoErrors(ng-controller='InputCtrl' layout='column' ng-cloak='')
+  md-content(layout-padding='')
+    form(name='projectForm')
+      md-input-container.md-block
+        label Description
+        input(md-maxlength=30 required='' name='description' ng-model='project.description')
+        div(ng-messages='projectform.description.$error')
+          div(ng-message='required') This is required.
+          div(ng-message='md-maxlength') The name has to be less than 30 characters long.
+
+      md-input-container.md-block
+        label Client Name
+        input(required='' name='clientName' ng-model='project.clientName')
+        div(ng-messages='projectForm.clientName.$error')
+          div(ng-message='required') This is required.
+
+      md-input-container.md-block
+        label Client Email
+        input(
+          required=''
+          type='email'
+          name='clientEmail'
+          ng-model='project.clientEmail'
+          minlength=10
+          maxLength=100
+          ng-pattern='/^.+@.+\..+$/'
+        )
+        div(ng-messages='projectForm.clientEmail.$error' role='alert')
+          div(ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']")
+            | Your email must be between 10 and 100 characters long and look like an e-mail address.
+
+      md-input-container.md-block
+        label Hourly Rate (USD)
+        input(
+          required=''
+          type='number'
+          styp='any'
+          name='rate'
+          ng-model='project.rate'
+          min=800
+          max=4999
+          ng-pattern='/^1234$/'
+        )
+        div(ng-messages='projectForm.rate.$error' multiple='' md-auto-hide='file')
+          div(ng-message='required').
+            You've got to charge something! You can't just <b>give away</b> a Missile Defense System.
+          div(ng-message='min').
+            You should charge at least $800 an hour.  This job is a big deal... if you mess up,
+            everyone dies!
+          div(ng-message='pattern').
+            You should charge exactly $1,234.
+          div(ng-message='max').
+            {{projectForm.rate.$viewValue | currency:"$":0}} an hour?  That's a little ridiculous.
+            I doubt even Bill Clinton could afford that.

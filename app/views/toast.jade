@@ -1,0 +1,30 @@
+.inset.toastdemoBasicUsage(ng-controller='ToastCtrl' layout-fill='' layout='column' ng-cloak='')
+  p
+    | Toast can be dismissed with a swipe, a timer, or a button
+    br
+    span(style={'font-size':'0.8em'}).
+      Notice the 'Show Custom' toast will not nudge the FABs positions since
+      a custom parent was specified.
+
+  div(layout='row' layout-sm='column' layout-align='space-around')
+    div(style={'width':'50px'})
+    md-button(ng-click='showSimpleToast()') Show Simple
+    md-button.md-raised(ng-click='showActionToast()') Show With Action
+    md-button(ng-click='showCustomToast()') Show Custom
+    div(style={'width':'50px'})
+
+  #toastBounds(layout='row')
+    div
+      br
+      b Toast Position: "{{getToastPosition()}}"
+      br
+      md-checkbox(ng-repeat='(name, isSelected) in toastPosition' ng-model='toastPosition[name]') {{name}}
+
+  div(layout='row')
+    md-button.md-primary.md-fab.md-fab-bottom-right FAB
+    md-button.md-accent.md-fab.md-fab-top-right FAB
+
+  script(id='toast-template.html' type='text/ng-template')
+    md-toast
+      span(flex) Custom toast!
+      md-button(ng-click='closeToast()') Close
